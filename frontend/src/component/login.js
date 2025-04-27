@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     
     const[email,setEmail]=useState("")
     const[password,setPassword]=useState("")
+    const navigate=useNavigate();
 
     const handleClick=async()=>{
         console.warn(email,password)
@@ -14,10 +16,11 @@ const Login = () => {
             headers:{
             'Content-Type':'application/json'
             }
-        }
-        )
+        })
         result=await result.json();
+        console.warn(result)
         localStorage.setItem("user",JSON.stringify(result))
+        navigate('/')
         console.warn(result);
 
     }

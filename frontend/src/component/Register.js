@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
     const[name,setName]=useState("")
     const[email,setEmail]=useState("")
     const[password,setPassword]=useState("")
+    const navigate=useNavigate();
 
     const handleClick=async()=>{
         console.warn(name,email,password)
@@ -18,6 +20,8 @@ const Register = () => {
         )
         result=await result.json();
         localStorage.setItem("user",JSON.stringify(result))
+        navigate('/')
+
         console.warn(result);
 
     }
