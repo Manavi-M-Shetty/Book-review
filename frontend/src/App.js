@@ -5,6 +5,7 @@ import Login from './component/login';
 import Addbook from './component/Addbook';
 import BookList from './component/BookList';
 import Review from './component/Review';
+import BookDetails from './Bookdetail';
 import { BrowserRouter ,Route,Routes} from 'react-router-dom';
 
 
@@ -19,6 +20,7 @@ function App() {
       <Route path="/add-book" element={<Addbook/>}/>
       <Route path="/" element={<BookList/>}/>
       <Route path="add-review/:id" element={<Review/>}/>
+      <Route path="/book-details/:id" element={<BookDetails/>}/>
       </Routes>
       </BrowserRouter>
     </div>

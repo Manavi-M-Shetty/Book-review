@@ -8,22 +8,25 @@ const Login = () => {
     const[password,setPassword]=useState("")
     const navigate=useNavigate();
 
-    const handleClick=async()=>{
-        console.warn(email,password)
-        let result=await fetch('http://localhost:8000/login',{
-            method:'post',
-            body:JSON.stringify({email,password}),
-            headers:{
-            'Content-Type':'application/json'
+    const handleClick = async () => {
+        console.warn(email, password);
+        let result = await fetch('http://localhost:8000/login', {
+            method: 'post',
+            body: JSON.stringify({ email, password }),
+            headers: {
+                'Content-Type': 'application/json'
             }
-        })
-        result=await result.json();
-        console.warn(result)
-        localStorage.setItem("user",JSON.stringify(result))
-        navigate('/')
-        console.warn(result);
-
-    }
+        });
+    
+        if (result.status === 200) {  // login success
+            result = await result.json();
+            console.warn(result);
+            localStorage.setItem("user", JSON.stringify(result.user)); // store only user
+            navigate('/');
+        } else { // login failed
+            alert('User not found'); // show error to user
+        }
+    };
     
     return (
         <div>
